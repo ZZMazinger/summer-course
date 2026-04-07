@@ -26,7 +26,29 @@ jobs:
             - name: Install test dependencies
               run: pip install pytest pytest-github-actions-annotate-failures
 
-            - name: "Run Problem Set 4 tests"
+            - name: "Problem 1 — Soldier Roster & Dispatch System"
+              continue-on-error: true
+              run: >
+                  pytest .github/python_tests/test_problem_set_4.py::TestProcessReports
+                  .github/python_tests/test_problem_set_4.py::TestShowAvailable
+                  .github/python_tests/test_problem_set_4.py::TestDispatch
+                  .github/python_tests/test_problem_set_4.py::TestFitnessReport
+                  -v --tb=short --no-header --color=yes -s
+
+            # - name: "Problem 2 — Recipe Ingredient Checker"
+            #   continue-on-error: true
+            #   run: >
+            #       pytest .github/python_tests/test_problem_set_4.py::TestCanMake
+            #       .github/python_tests/test_problem_set_4.py::TestMissingIngredients
+            #       -v --tb=short --no-header --color=yes -s
+
+            # - name: "Problem 3 — Song Lyric Word Counter"
+            #   continue-on-error: true
+            #   run: >
+            #       pytest .github/python_tests/test_problem_set_4.py::TestWordCount
+            #       -v --tb=short --no-header --color=yes -s
+
+            - name: "Final grade — all tests must pass"
               run: >
                   pytest .github/python_tests/test_problem_set_4.py
-                  -v --tb=short --no-header --color=yes -s
+                  --tb=line --no-header --color=yes -q
