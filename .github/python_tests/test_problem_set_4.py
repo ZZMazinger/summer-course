@@ -284,6 +284,7 @@ class TestDispatch:
 # ===========================================================================
 # fitness_report()   [Challenge]
 # ===========================================================================
+@pytest.mark.challenge
 class TestFitnessReport:
     """Tests for fitness_report(roster) -> {'high': [...], 'medium': [...], 'low': [...]}"""
 
