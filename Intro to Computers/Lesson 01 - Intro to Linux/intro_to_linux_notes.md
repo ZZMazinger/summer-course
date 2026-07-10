@@ -143,7 +143,9 @@ These exercises are designed to help you practice using tools like `grep`, `wc`,
 
 ## Stretch Goals:
 
-**Goal**:  Try to determine how many text files there are in the original repository.
+**Goal**:  Try to determine how many text files there are in the original repository.       #find -name "*.txt" | wc -l
 
 **Goal**:  Which file in the repository `https://github.com/shafe123/AI2C-LinuxLarge.git` has a hidden message? (hint: you can do this just with grep)
-
+  # I couldn't figure out how to do this the right way, so I downloaded the whole thing from GitHub and then changed directories into it, at which point I just did grep -r "hidden"
+  # dir_1/subdir_3/lworzmgx.txt:This file contains the hidden message.
+  # dir_1/subdir_3/lworzmgx.txt:Look for the 'hidden message'.
