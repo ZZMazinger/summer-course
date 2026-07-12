@@ -86,9 +86,9 @@
 ########################
 ## Solution Problem 2a
 ########################
-# print(list(range(1, 16)))
-# print(list(range(2, 31, 2)))
-# print(list(range(20, -1, -1)))
+print(list(range(1, 16)))
+print(list(range(2, 31, 2)))
+print(list(range(20, -1, -1)))
 
 ########################
 ## Solution Problem 2b
