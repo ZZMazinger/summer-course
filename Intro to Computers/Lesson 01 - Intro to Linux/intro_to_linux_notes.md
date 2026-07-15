@@ -30,7 +30,7 @@ Welcome! These exercises are designed to help you get comfortable with basic Lin
 
 ### Exercise 1: Navigation
 
-1. List all files and directories in the current folder.
+1. List all files and directories in the current folder.    #ls
    
 
 2. Change directory into `notes`, then list the files.      #cd notes
@@ -44,7 +44,7 @@ Welcome! These exercises are designed to help you get comfortable with basic Lin
 1. View the contents of `file1.txt`.                        #cat file1.txt
    
 
-2. Use `less` or `more` to view `file2.txt`.
+2. Use `less` or `more` to view `file2.txt`.                #more file1.txt
 
 ### Exercise 3: File Management
 
@@ -53,6 +53,7 @@ Welcome! These exercises are designed to help you get comfortable with basic Lin
 
 2. Move `file1.txt` into the `notes` directory and rename it as file3.  #mv file1.txt file3
                                                                         #mv file3 ./notes
+                                                                        #better solution: mv file1.txt ./notes/file3.txt
 
 3. Create a new file named `newfile.txt`.                               #touch newfile.txt
    
@@ -97,8 +98,8 @@ These exercises are designed to help you practice using tools like `grep`, `wc`,
    
 
 2. Count the number of words and characters in `docs/doc1.txt`.       #wc docs/doc1.txt
+                                                                      #preferred solution: wc -w -m docs/doc1.txt
    
-
 3. Get a summary for all `.txt` files.                                #wc *.txt
    
 ---
@@ -125,12 +126,11 @@ These exercises are designed to help you practice using tools like `grep`, `wc`,
 
 1. Redirect the output of `ls` into a file.                    #ls > redirected.txt
    
+# Note: > overwrites an existing file's contents, while >> appends new data to the end of the file
 
 2. Append output to an existing file using echo.     #echo 'appended_output' >> redirected.txt
    
-
 3. Use input redirection to provide data to a command.         #wc -w < file2.txt
-   
 
 4. Chain commands with a pipe: count the number of files containing "Note".
               # grep -r "Note" . | wc -l
@@ -138,7 +138,7 @@ These exercises are designed to help you practice using tools like `grep`, `wc`,
 5. Combine multiple operators: search a file and save results.
         #cd notes
         #grep -r "Note" > results.txt
-        # This would have worked better if I didn't cd first
+        # This would have worked better if I didn't cd first: grep "Note" notes/note1.txt > notes_found.txt
 ---
 
 ## Stretch Goals:
