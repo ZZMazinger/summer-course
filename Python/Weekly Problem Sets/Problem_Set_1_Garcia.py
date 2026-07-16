@@ -1,4 +1,4 @@
-# Student Code for Problem Set 1 - Python Basics --> Miguel Garcia
+# Student Code for Problem Set 1 - Python Basics -> Miguel Garcia
 
 ################################
 # # Problem 1 - Introduction Card
