@@ -1,0 +1,312 @@
+Exercise 1: Understanding Documentation Structure
+
+| Feature           | Python Docs | Requests Docs | FastAPI Docs |
+| ----------------- | ----------- | ------------- | ------------ |
+| Nav Location      |  Left bar   |  Left bar     |   right bar  |
+| Search Location   |  top right  |  Left bar     |   top bar    |
+| Has Tutorial?     |   yes       |     no        |      yes     |
+| Has API Ref?      |   yes       |     yes       |      yes     |
+| Version Selector? |   yes       |     no?       |      no?     |
+
+All three have pages which link to related topics and code examples.
+The main sections are documentation, other resources, indices/glossary/search, and project information for docs.python.org
+For Requests, sections include beloved features, user guide, community guide, API Documentation/guide, contributor guide, and useful links
+For FastAPI, main sections include "FastAPI", features, learn, reference, resources, about, and release notes
+
+1. Python docs, because the site is easiest to navigate and intuitive while also being thorough
+2. THey all have navigation, serach, and API References
+3. Requests: HTTP for Humans™
+
+
+Exercise 2: Scavenger Hunt - Python Official Docs
+1. JSON module:
+    Function to concvert to JSON: json.dumps()
+    Indentation parameter: indent
+2. sorted() function:
+    Found on page: https://docs.python.org/3/library/functions.html#sorted
+    Number of parameters: 5
+    Default for reverse: False
+3. String Methods:
+    Method to remove whitespace: .strip()
+    Checks starting prefix: .startswith(sub)
+    str.split() example: '1 2 3'.split()    # ['1', '2', '3']
+4. Exceptions:
+    Divide by 0: ZeroDivisionError
+    ValueError vs. TypeError: TypeError occurs when you pass a data type that the function fails to support, whereas ValueError occcurs when you pass the correct data type, but the content/value is invalid
+5. Python Tutorial:
+    Data Structures: Section 5
+    List Comprehensions: 5.1.3
+
+
+Exercise 3: Comparing Documentation Styles
+
+Making a simple GET request:
+https://requests.readthedocs.io/en/latest/user/quickstart/#make-a-request
+
+import requests
+r = requests.get('https://api.github.com/events')
+r = requests.post('https://httpbin.org/post', data={'key': 'value'})
+r = requests.put('https://httpbin.org/put', data={'key': 'value'})
+r = requests.delete('https://httpbin.org/delete')
+r = requests.head('https://httpbin.org/get')
+r = requests.options('https://httpbin.org/get')
+# 7 lines of code for this examples
+
+
+| Aspect                     | urllib | Requests | httpx |
+| -------------------------- | ------ | -------- | ----- |
+| Quick Start exists?        |   no   |  yes     |  yes  |
+| Simple GET example lines   |   yes  |  yes     |  yes  |
+| Code examples highlighted? |   yes  |  yes     |  yes  |
+| Explains response object?  |   yes  |  yes     |   no  |
+| Has tutorial section?      |   no   |  yes     |  yes  |
+
+1. https://requests.readthedocs.io/en/latest/user/quickstart/#make-a-request was the easiest example for me.
+2. Requests explains it most clearly
+3. Requests has the most code examples
+4. As a beginner, I prefer Requests
+
+
+Exercise 4: Library Documentation Deep Dive
+1. Finding the function: https://requests.readthedocs.io/en/latest/api/#requests.get
+2. url, params, **kwargs parameters are accepted; only URL is required, with the rest optional
+3. It returns a Response object, with text/content/encoding/apparent_encoding attributes (and more); methods include close(), iter_content(), iter_lines(), json(), and raise_for_status()
+    To get the response body as text, access the .text attribute
+    To get the HTTP status code, access the status_code attribute
+4. Examples:
+    Pass query parameters:
+        payload = {'key1': 'value1', 'key2': 'value2'}
+        r = requests.get('https://httpbin.org/get', params=payload)
+    Handle authentication:
+        rom requests.auth import HTTPBasicAuth
+        basic = HTTPBasicAuth('user', 'pass')
+        requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass'))
+5. Related information
+    A. GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH
+    B. Yes
+    C. Yes
+
+requests.get() Documentation Summary:
+
+Location in docs: https://requests.readthedocs.io/en/latest/api/#requests.get
+Required parameters: url
+Optional parameters: params, **kwargs
+Returns: Response object
+Common use cases: to retrieve data from a web server or API endpoint without modifying the server's state
+Related functions: requests.post(), requests.put(), requests.patch(), requests.delete(), requests.head(), etc.
+
+Practical Application:
+import requests
+import json
+
+url = 'https://api.github.com/users/github'
+response = requests.get(url)
+print(f"Status Code: {response.status_code}")
+
+json_data = response.json()
+print(json.dumps(json_data, indent=4))
+
+
+Exercise 5: Reading API Documentation
+
+API Structure
+1. Base URL: https://api.github.com
+2. Endpoints:
+    https://docs.github.com/en/rest/authentication/endpoints-available-for-fine-grained-personal-access-tokens?apiVersion=2026-03-10&versionId=free-pro-team%40latest&productId=rest
+    https://docs.github.com/en/rest/authentication/endpoints-available-for-github-app-installation-access-tokens?apiVersion=2026-03-10&versionId=free-pro-team%40latest&productId=rest
+    https://docs.github.com/en/rest/authentication/endpoints-available-for-github-app-user-access-tokens?apiVersion=2026-03-10&versionId=free-pro-team%40latest&productId=rest
+3. The GitHub REST API does not strictly require authentication for public data, but it is required for private resources, modifying data, or accessing higher rate limits.
+    Unauthenticated requests are restricted to only 60 requests per hour per IP address, while authenticated requests can make up to 5,000 requests per hour
+
+Endpoint: Get GitHub Actions cache usage for an organization
+HTTP Method: GET
+Full URL: https://docs.github.com/en/rest/actions/cache?apiVersion=2026-03-10#get-github-actions-cache-usage-for-an-organization
+Required Parameters: url, org
+Optional Parameters: accept
+Response Format: JSON
+Example Response:
+{
+  "total_active_caches_size_in_bytes": 3344284,
+  "total_active_caches_count": 5
+}
+
+
+Exercise 6: Finding Version-Specific Information
+
+Version Navigation
+1. Python 3.14.6
+2. Top Left
+
+Task 1: F-strings were introducted in Python 3.6 in December 2016
+
+Task 2: := was added in Python 3.8, officially known as assignment expressions
+
+Task 3: Python 3.5 introduced type hints, and they have changed across versions.
+    For example syntax in Python 3.12       type Point = tuple[int, int]
+    In Python 3.10                          x: int | str = 10
+
+Comparing Versions:
+dict.update() has the same functionality in Python 3.8 and Python 3.11, but |= other was added in 3.9
+These examples are the same, but if you go back far enough, Python 3.5 and earlier used to be unordered.
+
+Version-Specific Features:
+F-strings introduced in: Python 3.6
+Walrus operator introduced in: Python 3.8
+Type hints introduced in: Python 3.5
+
+Why this matters: Older code will not have newer features which could have streamlined things, and newer code may not be backwards compatible. You may need a virtual environment...
+
+
+Exercise 7: Using Search Effectively
+
+Search Exercises:
+1. 55 pages, with the first result being the official function documentation and many other pages mentioning enumerate (such as "What's New in Python 2.3")
+2. The Python Tutorial (https://docs.python.org/3/tutorial/index.html) covers list comprehension; the search result shows a Glossary: list comprehension example (among others)
+3. https://docs.python.org/3/library/exceptions.html#KeyError, raised when a mapping (dictionary) key is not found in the set of existing keys (self-evident example)
+4. 40 pages relate to "format", 217 to string formatting, 395 to format(), and 153 for format specifications; it requires finesse in terminology to narrow down results
+
+Search Strategy Comparison:
+1. External strategy was fastest
+2. Browsing docs.python.org gave the most authoritative answer
+3. I would use the search bar on Python.org most of the time, but if that does not immediately pop up with what I want, then Google is reasonable.
+
+
+Exercise 8: Understanding Code Examples
+
+# Example from docs (simplified):
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
+1. the FastAPI() function is being imported from fastapi
+2. The app is initialized under the alias app and called with @app.get("/")
+3. The core function initializes a new instance of the FastAPI application, which serves as the core backbone and central registry for building a web API.
+    When asigned to a variable, this object acts as the primary orchestrator that registers URL routes, handles HTTP requests, validates data, and generates documentation.
+4. It returns an instance of the FastAPI class, which serves as the core application object used to build and manage a web API.
+
+Exercise: Categorize Examples:
+
+# Example # 1
+r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
+r.status_code
+
+r.headers['content-type']
+
+r.encoding
+
+r.text
+
+r.json()
+
+1. Snippet
+2. import requests
+3. No
+
+# Example # 2
+$ python -m pip install requests
+$ git clone https://github.com/psf/requests.git
+$ curl -OL https://github.com/psf/requests/tarball/main
+# optionally, zipball is also available (for Windows users).$ cd requests
+$ python -m pip install .
+
+1. Complete
+2. N/A
+3. Yes (in terminal)
+
+# Example #3
+import requests
+r = requests.get('https://api.github.com/events')
+r = requests.post('https://httpbin.org/post', data={'key': 'value'})
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.get('https://httpbin.org/get', params=payload)
+payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+
+r = requests.get('https://httpbin.org/get', params=payload)
+print(r.url)
+
+1. Complete
+2. N/A
+3. Yes
+
+
+Exercise 9: Research Challenge
+# For code, see research_challenge_garcia.py
+
+Part 1:
+1. requets library and json
+2. response = requests.get(url)
+3. except requests.exceptions.ConnectionError as errc:
+        print(f"Connection Error: {errc}")
+
+Part 2:
+1. json
+2. data_dictionary = json.loads(json_text)
+3. except json.JSONDecodeError:
+        print(f"Error: The API response was not valid JSON.")
+
+Part 3:
+1. with open(file_name, "w") as file:
+        json.dump(parsed_data, file, indent=4)
+2. Since the .close() method can bug out if an error occurs mid-script, you can use the with statement instead
+3. You can handle file write errors by nesting a with open inside the try: block and then excepting PermissionError, FileNotFoundError, OSError, and Exception (general)
+
+Part 4:
+1.  try:
+    except NameOfError:
+    except:
+2. RequestError, ConnectionError, JSONDecodeError
+3. IOError, PermissionError, FileNotFoundError, OSError
+
+# API Data Fetcher - Research Notes
+## Problem: Fetch data from API and save to file
+
+1. HTTP Requests:
+   - Library choice: requests, json
+   - Function to use: requests.get()
+   - Error exceptions to handle: RequestError, ConnectionError, 
+
+2. JSON Parsing:
+   - Module: json
+   - Function to parse: data = response.json(), json.dump()
+   - Error exceptions to handle: JSONDecodeError
+
+3. File Writing:
+   - Best practice syntax: with open()
+   - Error exceptions to handle: IOError, PermissionError, FileNotFoundError
+
+4. Error Handling:
+   - try/except syntax: try:    except:
+   - Specific exceptions to catch: OSError
+
+### Documentation Pages Used:
+- https://docs.python.org/3/tutorial/inputoutput.html
+- https://docs.python.org/3/library/json.html
+- https://requests.readthedocs.io/en/latest/user/quickstart/
+- https://docs.python.org/3/library/io.html
+- https://docs.python.org/3/tutorial/errors.html
+
+### Time Spent: 60 minutes (estimate)
+
+
+# Stretch: Cross-Language Documentation Comparison
+
+| Aspect              | Python | JavaScript | Java |
+| ------------------- | ------ | ---------- | ---- |
+| Easy to find?       |   yes  |   yes      | iffy | # Java found in Tutorials
+| Example complexity  | simple |mostly simp.| hard |
+| Explanation quality |  great |pretty good | good | # Good but hard
+| Number of examples  |  high  |    mid     | mid  |
+
+1. Which language has the most beginner-friendly documentation?
+    Python
+2. What makes documentation "good" vs "bad"?
+    How easy it is to navigate and how intuitive it is for both beginners and experts
+3. Do all documentation sites share common patterns?
+    In some ways yes, but in other ways, they are different
+4. Can you navigate unfamiliar documentation using skills from this exercise?
+    Yes
